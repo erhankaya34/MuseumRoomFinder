@@ -1,24 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package museumvisitplanner;
 
-/**
- *
- * @author erhan
- */
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Scanner;
 import java.util.LinkedList;
-
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -69,7 +59,9 @@ public class BSTApp extends JFrame implements ActionListener {
         artAndArtistsNames.add("Avni Arbaş - Equestrian (R206)");
         artAndArtistsNames.add("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 
-        // UI Componentlerini tanımlıyoruz.
+
+        //I defined UI Components
+        
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         getContentPane().add(panel);
@@ -127,7 +119,8 @@ public class BSTApp extends JFrame implements ActionListener {
         BufferedImage image = null;
         String imageUrl = "https://drive.google.com/uc?export=download&id=1hMFUv5Ace4Ub6FxcWxm7ZJLelJRkTa1x";
 
-        try {
+        try 
+        {
             String userInput = textField.getText().trim();
             imageUrl = "https://drive.google.com/uc?export=download&id=1hMFUv5Ace4Ub6FxcWxm7ZJLelJRkTa1x";
             
@@ -142,11 +135,10 @@ public class BSTApp extends JFrame implements ActionListener {
             Graphics2D g2d = image.createGraphics();
             g2d.drawImage(scaledImage, 0, 0, null);
             g2d.dispose();
+        } 
         
-        } catch (IOException e) {
-            
-            
-
+        catch (IOException e) 
+        {
         }
         
         
@@ -168,29 +160,32 @@ public class BSTApp extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String roomName = textField.getText();
         int roomNumber = getRoomNumber(roomName);
-        if (roomNumber == -1) {
+        if (roomNumber == -1) 
+        {
             textArea.append("Room not found\n");
-            
-            
-
-            
-
-        } else {
+        }
+        
+        else 
+        {
             List<String> path = bst.getPathTo(roomNumber);
             textArea.append("Path to room " + roomName + ": " + String.join(" -> ", path) + " | END\n");
 
             // Load the new image based on the room name
             String imageUrl = getImageUrl(roomName);
             BufferedImage image = null;
-            try {
+            try 
+            {
                 URL url = new URL(imageUrl);
                 image = ImageIO.read(url);
-            } catch (IOException ex) {
+            } 
+            catch (IOException ex) 
+            {
                 ex.printStackTrace();
             }
 
            
-            if (image != null) {
+            if (image != null) 
+            {
                 int newWidth = (int) (image.getWidth() * 0.8);
                 int newHeight = (int) (image.getHeight() * 0.8);
                 Image scaledImage = image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
@@ -204,6 +199,7 @@ public class BSTApp extends JFrame implements ActionListener {
         textField.setText("");
     }
 
+    // Drawing paths with different scene images
     private String getImageUrl(String roomName) {
         switch (roomName) {
             case "F1":
