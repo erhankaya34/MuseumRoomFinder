@@ -118,7 +118,7 @@ public class BST {
         return node;
     }
  /*
-        These codes was about the console output but we moved it it to the interface
+        These codes were about the console output but we moved it it to the interface
 
         Scanner scanner = new Scanner(System.in);
         boolean keepGoing = true;
